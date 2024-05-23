@@ -1,19 +1,10 @@
 import Pyro4
 import logging
+import Pyro4
 
-logging.basicConfig(level=logging.INFO)
+ipAdressServer ="192.168.27.148"
 
-def main():
-    try:
-       
-        multiplicador = Pyro4.Proxy("PYRO:obj_077901fcaeb046e7bab7218d8665e36b@localhost:58375")
+numero = input("Ingresa un número ").strip()
 
-        numero = 7
-        resultado = multiplicador.multiplicar_por_dos(numero)
-
-        logging.info(f"El cliente envió {numero} y recibió {resultado}")
-    except Exception as e:
-        logging.error("Error al conectar con el servidor: %s", e)
-
-if __name__ == "__main__":
-    main()
+Multiplicador = Pyro4.core.Proxy('PYRO:multi@' + ipAdressServer + ':7070')    
+print(Multiplicador.multiplicar_por_dos(numero)
